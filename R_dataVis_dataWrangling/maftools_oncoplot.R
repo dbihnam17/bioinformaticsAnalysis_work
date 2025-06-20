@@ -35,6 +35,15 @@ library(maftools)
 # Import data
 maf <- read.maf("/path/to/MAF.txt")
 
+# To import a maf file with non-standard variant classifications
+# You must list ALL classifications you want to see in vc_nonSyn
+# not just the new one you are adding
+#maf <- read.maf("/path/to/MAF.txt", 
+#                vc_nonSyn = c("Nonstop_Mutation", "Frame_Shift_Del", "Missense_Mutation", 
+#                              "Nonsense_Mutation", "Splice_Site", "Frame_Shift_Ins", 
+#                              "In_Frame_Del", "In_Frame_Ins", "Start_Codon_Del", "In_Frame_Indel",
+#                              "etc..."))
+
 # Set font and style
 par(family = "Calibri", font = 1)
 
