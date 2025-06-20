@@ -11,6 +11,8 @@
 ## This script is intended to run sigProfilerExtractor for WGS mutational signature
 ## extraction as a slurm job. Change the slurm instructions and file paths as needed.
 
+## sigProfiler is not my own function, and can be found at https://github.com/AlexandrovLab/SigProfilerExtractor
+
 ## nmf_replicates=100 will run quickly and should be used for a quick look at the data
 ## nmf_replicates=1000 will take much more time and is better suited for finalized data
 
