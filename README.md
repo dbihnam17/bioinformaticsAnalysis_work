@@ -1,6 +1,6 @@
 # bioinformaticsAnalysis_work
 
-This repository is a collection of scripts, workflows, and code snippets I’ve written during my work as a research technologist in a cancer genomics lab. It reflects the kinds of computational analyses, data processing, and automation tasks I’ve handled across various projects.
+This repository is a collection of scripts, workflows, and code snippets I’ve written during my work as a research technologist in the Braggio cancer genomics lab at the Mayo Clinic. It reflects the kinds of computational analyses, data processing, and automation tasks I’ve handled across various projects.
 
 ## 📂 Repository Structure
 
@@ -27,10 +27,6 @@ Some of the tasks and analyses covered in this repo include:
 - `R`
 - `Python`
 
-## 🔬 Context
-
-This work was completed as part of my role in the Braggio Lab at the Mayo Clinic. It demonstrates my growth in applying data science and bioinformatics techniques to real-world research questions.
-
 ## 📎 Notes
 
 - Some scripts may require modifying file paths or installing dependencies to run.
@@ -38,4 +34,4 @@ This work was completed as part of my role in the Braggio Lab at the Mayo Clinic
 
 ## 📫 Contact
 
-Feel free to reach out via GitHub or email me at  with questions or collaborations.
+Feel free to reach out via GitHub or email me at daniel.bihnam@gmail.com with questions or collaborations.
