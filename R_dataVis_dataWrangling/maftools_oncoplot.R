@@ -64,6 +64,9 @@ oncoplot_custom(maf=maf, draw_titv = FALSE, showTumorSampleBarcodes = FALSE,
 
 
 ## Create oncoplot with patient metadata ---------------------------------------
+
+# ** This has not been run yet, so code is subject to change **
+
 # Load maftools library
 library(maftools)
 
