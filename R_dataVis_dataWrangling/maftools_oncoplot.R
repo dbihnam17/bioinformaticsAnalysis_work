@@ -130,8 +130,7 @@ gene_list <- c(
   "PSMD6", "PSMD7", "PSMD8", "PSMD9", "PSME1", "PSME2", "PSME3", "PSME4", "PSMF1",
   "PSMG1", "PSMG2", "PSMG3", "PSMG4", "PTPN11", "RASA2", "RB1", "RIPK1", "RIPK4",
   "SHC1", "SP140", "STAT3", "TET2", "TGFBR2", "TLR4", "TNFRSF13B", "TNFRSF21",
-  "TP53", "TRAF2", "TRAF3", "TRAF3IP1", "WHSC1", "XBP1", "ZFHX4"
-)
+  "TP53", "TRAF2", "TRAF3", "TRAF3IP1", "WHSC1", "XBP1", "ZFHX4")
 
 # Get gene summary table from maf object
 gene_summary <- getGeneSummary(maf)
