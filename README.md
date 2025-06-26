@@ -33,6 +33,7 @@ Some of the tasks and analyses covered in this repo include:
 - Some scripts may require modifying file paths or installing dependencies to run.
 - This repo is primarily for showcasing code.
 
-## Contact
+## Author
 
-Feel free to reach out via GitHub or email me at daniel.bihnam@gmail.com with questions or collaborations.
+**Daniel Bihnam**  
+GitHub: [@dbihnam17](https://github.com/dbihnam17)
