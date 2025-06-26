@@ -22,7 +22,7 @@ Some of the tasks and analyses covered in this repo include:
 - Bash pipelines for reproducible processing
 - QC checks of sequencing data
 
-## 🛠Languages
+## Languages
 
 - `bash`
 - `R`
