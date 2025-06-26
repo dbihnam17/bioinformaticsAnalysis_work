@@ -13,6 +13,7 @@ Some of the tasks and analyses covered in this repo include:
 
 - Mutational signature analysis
 - Visualization of genomic data in R
+- Automated processing of heterogenous tabular data
 - VCF parsing and variant filtering
 - Somatic mutation summarization
 - ATAC-seq preprocessing
