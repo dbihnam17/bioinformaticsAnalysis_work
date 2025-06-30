@@ -80,8 +80,6 @@ library(maftools)
 # For this run, the disease stage was used as a binary for
 # End stage and newly diagnosed patients
 # Table format should be Tumor_Sample_Barcode | Diagnosis_Status
-clinical <- read.csv("path/to/metadata.csv", stringsAsFactors = FALSE)
-
 
 # Import patient metadata
 clinical <- read.csv("/path/to/metadata.csv",
