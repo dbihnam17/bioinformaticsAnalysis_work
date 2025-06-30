@@ -86,20 +86,14 @@ clinical <- read.csv("/path/to/metadata.csv",
                      stringsAsFactors = FALSE)
 
 # Load MAF as a dataframe for filtering
-# This maf included CNV data derived from FISH entered in as "mutations"
+# This maf included data derived from FISH entered in as "mutations"
 # in order to structure plot nicely
+# To make sure all FISH data is properly plotted, give each abnormality a
+# unique position, that way they are not treated as duplicates
 maf <- read.delim("path/to/MAF.txt", stringsAsFactors = FALSE)
 
 # Filter MAF rows to keep only samples present in clinical metadata
 maf_filtered <- maf[maf$Tumor_Sample_Barcode %in% clinical$Tumor_Sample_Barcode, ]
-
-# Add filler data to CNV "mutations" for proper plotting
-maf_filtered$Chromosome[maf_filtered$Variant_Classification == "Translocation"] <- "chrUn"
-maf_filtered$Start_Position[maf_filtered$Variant_Classification == "Translocation"] <- 0
-maf_filtered$End_Position[maf_filtered$Variant_Classification == "Translocation"] <- 0
-maf_filtered$Reference_Allele[maf_filtered$Variant_Classification == "Translocation"] <- "-"
-maf_filtered$Tumor_Seq_Allele2[maf_filtered$Variant_Classification == "Translocation"] <- "-"
-
 
 # Load MAF object and associate clinical metadata
 maf <- read.maf(maf = maf_filtered,
@@ -168,3 +162,73 @@ oncoplot(maf = maf,
          showTumorSampleBarcodes = FALSE,
          clinicalFeatures = "Disease.Stage")
 
+# Plot disease stages separately
+# Get barcodes for each disease stage
+# Newly diagnosed
+nd_barcode <- clinical$Tumor_Sample_Barcode[clinical$Disease.Stage == "Newly diagnosed"]
+# End stage
+es_barcode <- clinical$Tumor_Sample_Barcode[clinical$Disease.Stage == "End stage"]
+
+# Subset original maf
+nd_maf <- subsetMaf(maf = maf, tsb = nd_barcode)
+es_maf <- subsetMaf(maf = maf, tsb = es_barcode)
+
+# Get gene list for newly diagnosed
+# Get gene summary table from maf object
+gene_summary_nd <- getGeneSummary(nd_maf)
+
+# Filter gene summary to only genes of interest
+gene_summary_filtered_nd <- gene_summary_nd[Hugo_Symbol %in% gene_list]
+
+# Order by mutation count descending
+gene_summary_filtered_nd <- gene_summary_filtered_nd[order(-MutatedSamples)]
+
+# Take top 'n' genes from that filtered list
+top30_genes_nd <- head(gene_summary_filtered_nd$Hugo_Symbol, 30)
+
+# Insert CNV mutations manually above 'n' genes
+top30_genes_FISH_nd <- c("t11_14", "t4_14", "t14_20", "t14_16", "t6_14",
+                         "Hyperdiploid", "1q", "17p", top30_genes_nd)
+
+# Get gene list for end stage
+# Get gene summary table from maf object
+gene_summary_es <- getGeneSummary(es_maf)
+
+# Filter gene summary to only genes of interest
+gene_summary_filtered_es <- gene_summary_es[Hugo_Symbol %in% gene_list]
+
+# Order by mutation count desceesing
+gene_summary_filtered_es <- gene_summary_filtered_es[order(-MutatedSamples)]
+
+# Take top 'n' genes from that filtered list
+top30_genes_es <- head(gene_summary_filtered_es$Hugo_Symbol, 30)
+
+# Insert CNV mutations manually above 'n' genes
+top30_genes_FISH_es <- c("t11_14", "t4_14", "t14_20", "t14_16", "t6_14",
+                         "Hyperdiploid", "1q", "17p", top30_genes_es)
+
+# Use custom oncoplot
+source("/path/to/oncoplot_custom.R")
+
+# Plot newly diagnosed
+oncoplot_custom(maf = nd_maf,
+                genes = top30_genes_FISH_nd,
+                fontSize = 0.75,
+                keepGeneOrder = TRUE,
+                showTumorSampleBarcodes = FALSE)
+
+# Plot end stage
+oncoplot_custom(maf = es_maf,
+                genes = top30_genes_FISH_es,
+                fontSize = 0.75,
+                keepGeneOrder = TRUE,
+                showTumorSampleBarcodes = FALSE)
+
+## Co-expression matrix for each disease stage
+# Plot newly diagnosed co-expression matrix
+somaticInteractions(maf = nd_maf, genes = top30_genes_FISH_nd,
+                    pvalue = c(0.01, 0.05), fontSize = 0.6)
+
+# Plot end stage co-expression matrix
+somaticInteractions(maf = es_maf, genes = top30_genes_FISH_es,
+                    pvalue = c(0.01, 0.05), fontSize = 0.6)
